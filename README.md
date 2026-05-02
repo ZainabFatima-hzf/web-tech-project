@@ -1,17 +1,90 @@
-Run this script before starting backend
-open cmd
-//run the following commands
-sqlplus / as sysdba
-SHOW CON_NAME;  // if it's CDB$ROOT then change it by running following command
-ALTER SESSION SET CONTAINER = XEPDB1;
-// then create this user
-CREATE USER app_user IDENTIFIED BY app123;
-GRANT CONNECT, RESOURCE TO app_user;
-ALTER USER app_user QUOTA UNLIMITED ON USERS;
+## 🚀 Getting Started (All Members)
 
+### 1. Clone the repo
+git clone https://github.com/ZainabFatima-hzf/web-tech-project.git
+
+### 2. Backend Setup
+cd backend
+npm install
+node server.js
+→ Runs on http://localhost:5000
+
+Packages installed automatically:
+- express, cors, dotenv, oracledb
+
+### 3. Frontend Setup
+cd frontend
+npm install
+npm start
+→ Runs on http://localhost:3000
+
+Packages installed automatically:
+- react, react-dom, react-router-dom
+- lucide-react (icons)
+- react-scripts, web-vitals, testing-library
+
+⚠️ If you get "Module not found" errors, run manually:
+npm install react-router-dom lucide-react
+
+### 4. Database Setup
+- Make sure Oracle XE is installed and running
+- Open cmd (not PowerShell) and connect:
+  sqlplus / as sysdba
+  SHOW CON_NAME;
+  (if CDB$ROOT): ALTER SESSION SET CONTAINER = XEPDB1;
+  CREATE USER app_user IDENTIFIED BY app123;
+  GRANT CONNECT, RESOURCE TO app_user;
+  ALTER USER app_user QUOTA UNLIMITED ON USERS;
+- Then reconnect as app_user:
+  sqlplus app_user/app123@localhost:1521/XEPDB1
+- Run your schema file:
+  @C:\full\path\to\database\your_schema.sql
+- Member 1 schema already done: database/member1_schema.sql
+
+## 📁 Project Structure
+web-tech-project/
+  backend/
+    routes/
+      students.js     ← Member 1
+      dashboard.js    ← Member 1
+      (add yours here)
+    server.js         ← register your routes here
+    db.js
+  frontend/
+    src/
+      components/
+        Layout.jsx    ← SHARED, import this in every page
+      pages/
+        Dashboard.jsx ← Member 1
+        Students.jsx  ← Member 1
+        (add yours here)
+      App.js          ← add your route here
+  database/
+    member1_schema.sql
+    (add your schema file here)
+
+---
+## ⚠️ Important Notes for Members 2 & 3
+
+1. Always import Layout in your pages:
+   import Layout from "../components/Layout";
+   export default function YourPage() {
+     return <Layout> ... </Layout>;
+   }
+
+2. Add your route in frontend/src/App.js
+
+3. Add your Express router in backend/server.js:
+   const yourRouter = require("./routes/yourfile");
+   app.use("/yourpath", yourRouter);
+
+4. Member 1 dashboard will auto-update once you create:
+   - Member 2: Attendance table (attendance_id, student_id, course_id, status, date)
+   - Member 3: Grades table (student_id, course_id, marks_obtained)
+   Then tell Member 1 to run the remaining views in member1_schema.sql
 🎨 Frontend Design Guidelines (Modern Student Style)
 
-🎯 Design Direction
+🎯 **Design Direction**
 
 Modern, slightly bold, not corporate
 Dark-accented UI with vibrant highlights
