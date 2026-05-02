@@ -19,8 +19,8 @@ Clean but visually engaging (not boring dashboard)
 Think: tech startup / student-built product
 🎨 Color Palette (Dark + Vibrant)
 Purpose	Color	Code
-Background	Dark Slate	#0F172A
-Card Background	Soft Dark	#1E293B
+Background	Dark Slate	 #342534
+Card Background	Soft Dark	#37284e
 Primary	Purple	#7C3AED
 Secondary	Cyan	#06B6D4
 Accent	Pink	#EC4899
@@ -54,7 +54,7 @@ Gradient style (IMPORTANT for uniqueness)
 
 Example:
 
-background: linear-gradient(135deg, #7C3AED, #06B6D4);
+background: linear-gradient(135deg, #342534, #1f2836);
 border-radius: 8px;
 Hover → slightly brighter
 🔹 Inputs & Forms
@@ -91,3 +91,5 @@ Colored indicator (green/yellow/red)
 ✅ Recommended Stack
 Tailwind CSS (best for speed)
 Icons: Lucide React
+
+**IMPORTANT: import the layout in other frontend pages for consistency.**
