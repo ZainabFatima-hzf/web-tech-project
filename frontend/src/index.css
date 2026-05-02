@@ -1,0 +1,19 @@
+/* src/index.css  –  Member 1 */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #342534;
+  color: #F8FAFC;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #1e1329; }
+::-webkit-scrollbar-thumb { background: rgba(124,58,237,0.4); border-radius: 10px; }
+
+/* Select option dark fix */
+select option { background: #1e1329; color: #F8FAFC; }
