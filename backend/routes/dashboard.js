@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
   `SELECT 
     (SELECT COUNT(*) FROM Students WHERE status = 'Active') AS total_students,
     0 AS overall_attendance_pct,
-    (select avg_marks from vw_student_avg_marks) AS overall_avg_marks,
+    0 AS overall_avg_marks,
     0 AS at_risk_count
    FROM dual`,
   [],

@@ -37,7 +37,7 @@ app.use("/dashboard", dashboardRouter);
 
 // ── Member 3 routes ──────────────────────────
 app.use("/performance", performanceRouter);
-app.use("/exams",       performanceRouter);
+app.use("/",       performanceRouter);
 
 // ─────────────────────────────────────────────
 app.listen(5000, () => console.log("Server running on port 5000"));
