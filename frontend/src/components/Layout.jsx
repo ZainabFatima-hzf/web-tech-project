@@ -4,7 +4,8 @@ import { useState } from "react";
 import { NavLink} from "react-router-dom";
 import {
   LayoutDashboard, Users, BookOpen, ClipboardList,
-  BarChart3, Settings, ChevronLeft, ChevronRight, GraduationCap
+  BarChart3, Settings, ChevronLeft, ChevronRight, GraduationCap,
+  FileEdit
 } from "lucide-react";
 
 const NAV = [
@@ -12,6 +13,7 @@ const NAV = [
   { to: "/students",   icon: Users,            label: "Students"    },
   { to: "/courses",    icon: BookOpen,         label: "Courses"     },
   { to: "/attendance", icon: ClipboardList,    label: "Attendance"  },
+  { to: "/marks",      icon: FileEdit,         label: "Marks Entry" },
   { to: "/reports",    icon: BarChart3,        label: "Reports"     },
   { to: "/settings",   icon: Settings,         label: "Settings"    },
 ];

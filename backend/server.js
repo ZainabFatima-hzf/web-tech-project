@@ -3,8 +3,9 @@ const express = require("express");
 const cors    = require("cors");
 const connectDB = require("./db");
 
-const studentsRouter  = require("./routes/students");
-const dashboardRouter = require("./routes/dashboard");
+const studentsRouter     = require("./routes/students");
+const dashboardRouter    = require("./routes/dashboard");
+const performanceRouter  = require("./routes/performance");
 
 const app = express();
 
@@ -33,6 +34,10 @@ app.get("/db-test", async (req, res) => {
 // ── Member 1 routes ──────────────────────────
 app.use("/students",  studentsRouter);
 app.use("/dashboard", dashboardRouter);
+
+// ── Member 3 routes ──────────────────────────
+app.use("/performance", performanceRouter);
+app.use("/exams",       performanceRouter);
 
 // ─────────────────────────────────────────────
 app.listen(5000, () => console.log("Server running on port 5000"));
