@@ -30,12 +30,11 @@ CREATE TABLE Students (
     dept_id      NUMBER        NOT NULL,
     enrollment_date DATE       DEFAULT SYSDATE,
     semester     NUMBER(2)     CHECK (semester BETWEEN 1 AND 8),
-    status       VARCHAR2(10)  DEFAULT 'Active'
-                               CHECK (status IN ('Active','Inactive','Graduated')),
-
-    CONSTRAINT fk_student_dept FOREIGN KEY (dept_id)
-        REFERENCES Departments(dept_id)
+    status          VARCHAR2(10)  DEFAULT 'Active' CHECK (status IN ('Active','Inactive','Graduated'))
 );
+ALTER TABLE Students
+ADD CONSTRAINT fk_student_dept FOREIGN KEY (dept_id)
+REFERENCES Departments(dept_id);
 
 -- ─────────────────────────────────────────────
 -- 3. SEQUENCE  (used by trigger)
