@@ -4,6 +4,7 @@ import Dashboard        from "./pages/Dashboard";
 import Students         from "./pages/Students";
 import MarksEntry       from "./pages/MarksEntry";
 import PerformanceReport from "./pages/PerformanceReport";
+import StudentPortal    from "./pages/StudentPortal";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         {/* Member 3 */}
         <Route path="/marks"       element={<MarksEntry />} />
         <Route path="/reports"     element={<PerformanceReport />} />
+        <Route path="/student"          element={<StudentPortal />} />
         {/* Members 2 add their routes below */}
         {/* <Route path="/attendance" element={<Attendance />} /> */}
         {/* <Route path="/courses"    element={<Courses />} /> */}
