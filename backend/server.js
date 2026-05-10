@@ -1,18 +1,19 @@
-// server.js  –  updated by Member 1 (wire in students + dashboard routes)
+// server.js  –  updated by Member 2 (wire in attendance route)
 const express = require("express");
 const cors    = require("cors");
 const connectDB = require("./db");
 
-const studentsRouter     = require("./routes/students");
-const dashboardRouter    = require("./routes/dashboard");
-const performanceRouter  = require("./routes/performance");
+const studentsRouter   = require("./routes/students");
+const dashboardRouter  = require("./routes/dashboard");
+const performanceRouter = require("./routes/performance");
+const attendanceRouter = require("./routes/attendance");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// ── Existing test routes ─────────────────────
+// ── Test routes ──────────────────────────────
 app.get("/test", (req, res) => res.send("Backend working!"));
 
 app.get("/db-test", async (req, res) => {
@@ -32,12 +33,13 @@ app.get("/db-test", async (req, res) => {
 });
 
 // ── Member 1 routes ──────────────────────────
-app.use("/students",  studentsRouter);
-app.use("/dashboard", dashboardRouter);
+app.use("/students",   studentsRouter);
+app.use("/dashboard",  dashboardRouter);
+
+// ── Member 2 routes ──────────────────────────
+app.use("/attendance", attendanceRouter);
 
 // ── Member 3 routes ──────────────────────────
-app.use("/performance", performanceRouter);
-app.use("/",       performanceRouter);
+app.use("/", performanceRouter);
 
-// ─────────────────────────────────────────────
 app.listen(5000, () => console.log("Server running on port 5000"));
