@@ -28,7 +28,7 @@ export default function Courses() {
   const [error, setError]     = useState(null);
 
   useEffect(() => {
-    fetch(`${API}/courses`)
+    fetch(`${API}/performance/courses`)
       .then(r => { if (!r.ok) throw new Error("Failed to load courses."); return r.json(); })
       .then(data => setCourses(data))
       .catch(e => setError(e.message))

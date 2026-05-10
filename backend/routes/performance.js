@@ -95,7 +95,7 @@ router.get("/courses", async (req, res) => {
   try {
     connection = await connectDB();
     const result = await connection.execute(
-      `SELECT course_id, course_name, course_code, credit_hours FROM Courses ORDER BY course_name`,
+      `SELECT course_id, course_name, course_code, credit_hours, dept_id FROM Courses ORDER BY course_name`,
       [],
       { outFormat: oracledb.OUT_FORMAT_OBJECT }
     );

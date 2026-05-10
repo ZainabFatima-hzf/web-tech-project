@@ -1,10 +1,11 @@
 // src/pages/StudentPortal.jsx
 // Student-facing page — no sidebar, clean self-contained interface
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
-  Search, AlertTriangle, CheckCircle, XCircle,
+  Search, AlertTriangle, XCircle,
   BookOpen, ClipboardList, TrendingUp, GraduationCap,
-  ShieldAlert, ShieldCheck, Loader2, ChevronRight
+  ShieldAlert, ShieldCheck, Loader2
 } from "lucide-react";
 
 const API = "http://localhost:5000";
@@ -145,7 +146,7 @@ export default function StudentPortal() {
   const [loading, setLoading]     = useState(false);
   const [error, setError]         = useState(null);
   const [searched, setSearched]   = useState(false);
-
+  const navigate = useNavigate();
   const handleSearch = async () => {
     const id = inputId.trim().toUpperCase();
     if (!id) return;
@@ -212,6 +213,7 @@ export default function StudentPortal() {
         borderBottom: "1px solid rgba(124,58,237,0.15)",
         padding: "28px 32px",
         display: "flex", alignItems: "center", gap: 14,
+        justifyContent: "space-between",
       }}>
         <div style={{
           background: "linear-gradient(135deg,#7C3AED,#06B6D4)",
@@ -227,6 +229,20 @@ export default function StudentPortal() {
             Check your attendance & academic standing
           </p>
         </div>
+        <button
+        onClick={() => navigate("/dashboard")}
+        style={{
+          background: "rgb(82, 113, 224)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          borderRadius: 10, padding: "7px 16px",
+          color: "#f7f8f9", fontSize: 12, fontWeight: 600,
+          cursor: "pointer", display: "flex", alignItems: "center", gap: 6,
+          boxShadow: "0 4px 14px rgba(124,58,237,0.3)",
+        }}
+      >
+        <GraduationCap size={14}/>
+        ← Teacher Dashboard
+      </button>
       </div>
 
       <div style={{ maxWidth: 780, margin: "0 auto", padding: "36px 24px 0" }}>

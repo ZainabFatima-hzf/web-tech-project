@@ -14,19 +14,25 @@ router.get("/", async (req, res) => {
 
     // Summary KPIs
     const summaryResult = await connection.execute(
-  `SELECT 
-    (SELECT COUNT(*) FROM Students WHERE status = 'Active') AS total_students,
-    0 AS overall_attendance_pct,
-    0 AS overall_avg_marks,
-    0 AS at_risk_count
-   FROM dual`,
-  [],
-  { outFormat: oracledb.OUT_FORMAT_OBJECT }
-);
-
+      `SELECT total_students, overall_attendance_pct,
+              overall_avg_marks, at_risk_count
+       FROM   vw_dashboard_summary`,
+      [],
+      { outFormat: oracledb.OUT_FORMAT_OBJECT }
+    );
+ 
     // At-risk students (top 10)
-    const atRiskResult = { rows: [] };
-
+    const atRiskResult = await connection.execute(
+      `SELECT student_id, full_name, attendance_pct, avg_marks, risk_level
+       FROM   vw_at_risk_students
+       ORDER  BY CASE risk_level WHEN 'Critical' THEN 1
+                                  WHEN 'Low Attendance' THEN 2
+                                  WHEN 'Low Marks' THEN 3
+                                  ELSE 4 END
+       FETCH FIRST 10 ROWS ONLY`,
+      [],
+      { outFormat: oracledb.OUT_FORMAT_OBJECT }
+    );
     // Department-wise student count
     const deptResult = await connection.execute(
       `SELECT d.dept_name, COUNT(s.student_id) AS student_count

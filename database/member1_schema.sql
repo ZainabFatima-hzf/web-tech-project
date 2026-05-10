@@ -123,19 +123,27 @@ GROUP BY s.student_id, s.full_name;
 -- 6c. At-Risk view  (attendance < 75 OR avg marks < 40)
 CREATE OR REPLACE VIEW vw_at_risk_students AS
 SELECT
-    a.student_id,
-    a.full_name,
-    a.attendance_pct,
-    m.avg_marks,
+    student_id,
+    full_name,
+    MIN(attendance_pct) AS attendance_pct,
+    avg_marks,
     CASE
-        WHEN a.attendance_pct < 75 AND m.avg_marks < 40 THEN 'Critical'
-        WHEN a.attendance_pct < 75                      THEN 'Low Attendance'
-        WHEN m.avg_marks < 40                           THEN 'Low Marks'
+        WHEN MIN(attendance_pct) < 75 AND (avg_marks IS NULL OR avg_marks < 40) THEN 'Critical'
+        WHEN MIN(attendance_pct) < 75 THEN 'Low Attendance'
+        WHEN avg_marks IS NOT NULL AND avg_marks < 40 THEN 'Low Marks'
         ELSE 'Watch'
     END AS risk_level
-FROM vw_student_attendance a
-JOIN vw_student_avg_marks  m ON m.student_id = a.student_id
-WHERE a.attendance_pct < 75 OR m.avg_marks < 40;
+FROM (
+    SELECT
+        a.student_id,
+        a.full_name,
+        a.attendance_pct,
+        m.avg_marks
+    FROM vw_attendance_by_course a
+    LEFT JOIN vw_student_avg_marks m ON m.student_id = a.student_id
+    WHERE a.attendance_pct < 75 OR (m.avg_marks IS NOT NULL AND m.avg_marks < 40)
+)
+GROUP BY student_id, full_name, avg_marks;
 
 -- 6d. Dashboard summary card numbers
 CREATE OR REPLACE VIEW vw_dashboard_summary AS

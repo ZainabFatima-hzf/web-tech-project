@@ -40,6 +40,6 @@ app.use("/dashboard",  dashboardRouter);
 app.use("/attendance", attendanceRouter);
 
 // ── Member 3 routes ──────────────────────────
-app.use("/", performanceRouter);
+app.use("/performance", performanceRouter);
 
 app.listen(5000, () => console.log("Server running on port 5000"));

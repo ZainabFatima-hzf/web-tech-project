@@ -60,7 +60,7 @@ export default function MarksEntry() {
   useEffect(() => {
     fetch(`${API}/students`).then(r => r.json()).then(setStudents).catch(console.error);
     fetch(`${API}/performance/courses`).then(r => r.json()).then(setCourses).catch(console.error);
-    fetch(`${API}/exams`).then(r => r.json()).then(d => { setExams(d); setFilteredExams(d); }).catch(console.error);
+    fetch(`${API}/performance/exams`).then(r => r.json()).then(d => { setExams(d); setFilteredExams(d); }).catch(console.error);
   }, []);
 
   // Filter exams by selected course
